@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroSmart</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+   
+</head>
+<body>
+
+<header class="header container">
+    <div class="logo">
+        <a href="index.html" class="logo">
+            <img src="assets/images/лого.png" alt="NeuroSmart">
+        </a>
+    </div>
+
+    <nav class="nav">
+        <a href="#">Каталог курсов</a>
+        <a href="about.html">О нас</a>
+        <a href="blog.html">Блог</a>
+    </nav>
+</header>
+
+<section class="hero container">
+    <div class="hero-content">
+        <h1>Научите бизнес мыслить,<br>как нейросеть</h1>
+        <p>
+            Автоматизируйте рутину, создавайте контент
+            в 10 раз быстрее и экономьте до 20 часов в неделю
+        </p>
+        <button>Перейти в каталог</button>
+        <span>Бесплатный чек-лист «50 промптов» внутри</span>
+    </div>
+
+    <div class="hero-image">
+        <img src="assets/images/глав.png" alt="robot">
+    </div>
+</section>
+
+<section class="advantages container">
+    <h2>Почему 3000+ учеников выбрали NeuroSmart</h2>
+
+    <div class="advantages-list">
+        <div class="card">
+            <img src="assets/images/иконка 1.png" alt="">
+            <h3>Практика, а не теория</h3>
+            <p>Все уроки построены на реальных бизнес-задачах. Никакой воды — только работающие алгоритмы и промпты.</p>
+        </div>
+
+        <div class="card">
+            <img src="assets/images/иконка 2.png" alt="">
+            <h3>Поддержка экспертов</h3>
+            <p>Домашние задания проверяют действующие практики. Ошибки разбираем до полного понимания.</p>
+        </div>
+
+        <div class="card">
+            <img src="assets/images/иконка 3.png" alt="">
+            <h3>Доступ навсегда</h3>
+            <p>После покупки материалы остаются у вас. Пересматривайте уроки в любое время без дополнительной оплаты.</p>
+        </div>
+
+        <div class="card">
+            <img src="assets/images/иконка 4.png" alt="">
+            <h3>Результат сразу</h3>
+            <p>Уже после второго урока вы сможете генерировать посты, изображения и анализировать данные с помощью нейросетей.</p>
+        </div>
+    </div>
+</section>
+
+<section class="tariffs container">
+    <h2>Выберите формат обучения</h2>
+
+    <div class="tariff-list">
+        <div class="tariff-card">
+            <h2>Старт</h2>
+            <p>5 видеоуроков + PDF-гайды. Доступ навсегда</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="tariff-card">
+            <h2>Про</h2>
+            <p>15 уроков + домашние задания с проверкой + Telegram-чат</p>
+            <button>Подробнее</button>
+        </div>
+
+        <div class="tariff-card">
+            <h2>Бизнес</h2>
+            <p>25 уроков + 3 личные консультации + чек-лист по внедрению ИИ</p>
+            <button>Подробнее</button>
+        </div>
+    </div>
+</section>
+
+
+<section class="checklist container">
+    <div class="checklist-content">
+        <h2>Получите чек-лист бесплатно</h2>
+        <p>Готовые запросы для генерации продающих текстов, создания постов и автоматизации ответов клиентам. Просто введите email — и мы отправим PDF</p>
+
+        <button id="openPopupBtn">Забрать чек-лист</button>
+    </div>
+
+    <div class="checklist-image">
+        <img src="assets/images/чеклист.png" alt="">
+    </div>
+</section>
+
+<footer class="footer container">
+    <div class="logo">
+        <a href="index.html" class="logo">
+            <img src="assets/images/лого.png" alt="NeuroSmart">
+        </a>
+    </div>
+
+    <div class="contacts">
+        <p>Email</p>
+        <p>Telegram</p>
+        <p>Вконтакте</p>
+    </div>
+
+    <div class="docs">
+        <p>Публичная оферта</p>
+        <p>Политика конфиденциальности</p>
+        <p>Лицензия</p>
+    </div>
+</footer>
+
+
+<div class="popup-overlay" id="emailPopup">
+    <div class="popup">
+        <button class="popup-close" id="closeEmailPopup">&times;</button>
+        <h2>Получить чек-лист</h2>
+        <p>Введите ваш email, и мы отправим PDF с 50 промптами для нейросетей.</p>
+
+        <input type="email" id="emailInput" placeholder="example@mail.ru">
+        <div class="error-message" id="emailError">Пожалуйста, введите корректный email</div>
+
+        <button id="submitEmailBtn">Получить чек-лист</button>
+    </div>
+</div>
+
+<div class="popup-overlay success-popup" id="successPopup">
+    <div class="popup">
+        <button class="popup-close" id="closeSuccessPopup">&times;</button>
+        <div class="success-icon">✅</div>
+        <h2>Готово!</h2>
+        <p>Чек-лист отправлен на ваш email.<br>Проверьте почту и папку «Спам».</p>
+        <button id="successOkBtn">Отлично!</button>
+    </div>
+</div>
+
+<script>
+    (function() {
+        'use strict';
+
+        const openPopupBtn = document.getElementById('openPopupBtn');
+        const emailPopup = document.getElementById('emailPopup');
+        const closeEmailPopupBtn = document.getElementById('closeEmailPopup');
+        const emailInput = document.getElementById('emailInput');
+        const emailError = document.getElementById('emailError');
+        const submitBtn = document.getElementById('submitEmailBtn');
+
+        const successPopup = document.getElementById('successPopup');
+        const closeSuccessPopupBtn = document.getElementById('closeSuccessPopup');
+        const successOkBtn = document.getElementById('successOkBtn');
+
+    
+        function openPopup(popup) {
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closePopup(popup) {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+            if (popup === emailPopup) {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+            }
+        }
+
+        function closeOnOverlayClick(e, popup) {
+            if (e.target === popup) {
+                closePopup(popup);
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        openPopupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openPopup(emailPopup);
+            emailInput.focus();
+        });
+
+        closeEmailPopupBtn.addEventListener('click', function() {
+            closePopup(emailPopup);
+        });
+
+        emailPopup.addEventListener('click', function(e) {
+            closeOnOverlayClick(e, emailPopup);
+        });
+
+        submitBtn.addEventListener('click', function() {
+            const email = emailInput.value.trim();
+
+            if (!validateEmail(email)) {
+                emailInput.classList.add('error');
+                emailError.classList.add('show');
+                return;
+            }
+
+            emailInput.classList.remove('error');
+            emailError.classList.remove('show');
+
+            closePopup(emailPopup);
+
+            openPopup(successPopup);
+        });
+
+        emailInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitBtn.click();
+            }
+        });
+
+        emailInput.addEventListener('input', function() {
+            if (emailInput.classList.contains('error')) {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+            }
+        });
+
+        closeSuccessPopupBtn.addEventListener('click', function() {
+            closePopup(successPopup);
+        });
+
+        successPopup.addEventListener('click', function(e) {
+            closeOnOverlayClick(e, successPopup);
+        });
+
+        successOkBtn.addEventListener('click', function() {
+            closePopup(successPopup);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (emailPopup.classList.contains('active')) {
+                    closePopup(emailPopup);
+                }
+                if (successPopup.classList.contains('active')) {
+                    closePopup(successPopup);
+                }
+            }
+        });
+
+    })();
+</script>
+
+</body>
+</html>
